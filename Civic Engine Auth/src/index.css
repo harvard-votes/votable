@@ -1,0 +1,25 @@
+body {
+  background-color: #f5f5f5;
+}
+
+.form-control {
+  margin: 40px 0;
+}
+
+.form-control label {
+  display: block;
+}
+
+.form-control input {
+  width: 100%;
+  padding: 3px 7px;
+}
+
+.saveButton {
+    padding:5px 15px; 
+    background:#ccc; 
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px; 
+}
