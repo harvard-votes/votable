@@ -21,7 +21,7 @@ function EditContact() {
     e.preventDefault();
     try {
       const response = await fetch(
-        `http://localhost:8000/contacts/${contact.id}`,
+        `http://localhost:8000/edit-contact/${contact.id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },

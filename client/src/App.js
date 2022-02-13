@@ -2,6 +2,7 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import Table from "./components/Table";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import AddContact from "./pages/AddContact";
 import EditContact from "./pages/EditContact";
 import Footer from "./components/Footer";
 import About from "./pages/About";
@@ -13,6 +14,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" exact element={<Table />} />
+        <Route path="/add-contact" element={<AddContact />} />
         <Route path="/edit-contact" element={<EditContact />} />
         <Route path="/about" element={<About />} />
       </Routes>

@@ -57,7 +57,7 @@ app.get("/contacts/:id", async (req, res) => {
 });
 
 // Update contact
-app.put("/contacts/:id", async (req, res) => {
+app.put("/edit-contact/:id", async (req, res) => {
     try {
         const { id } = req.params;
         const { last_name, first_name, email, phone_number, house, suite, mailbox_center,
