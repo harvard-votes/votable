@@ -1,13 +1,3 @@
-# civic-engine
-Resources Used:
+### CampusContact
 
-https://reactjs.org/
-
-https://www.geeksforgeeks.org/reactjs-components/
-
-https://github.com/brillout/awesome-react-components
-
-https://firebase.google.com/docs
-
-Auth modified from: https://github.com/trulymittal/react-firebase-auth
-
+# CampusContact is the only campus-first peer-to-peer relational organizing tool.
