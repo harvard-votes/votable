@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Contact from "./Contact";
+import SearchBar from "./SearchBar";
 
 function Table() {
   const [contacts, setContacts] = useState([]);
@@ -38,6 +39,7 @@ function Table() {
 
   return (
     <>
+      <SearchBar onContactsChange={setContacts} />
       {contacts.length > 0 ? (
         <table className="table table-striped table-sm my-3">
           <thead>

@@ -4,7 +4,14 @@ import { useNavigate } from "react-router-dom";
 function AddContact() {
   const navigate = useNavigate();
 
-  const [contact, setContact] = useState([]);
+  const [contact, setContact] = useState({
+    "class_year": "First-Year",
+    "should_contact": true,
+    "contact_status": "Not Contacted",
+    "pte_status": "Not Completed",
+    "registration_status": "Not Registered",
+    "stage_of_voting_process": "Unknown"
+  });
 
   // Update contact state on input change
   const inputChange = (e) => {
@@ -13,7 +20,6 @@ function AddContact() {
       ...contact,
       [name]: value,
     });
-    console.log(contact);
   };
 
   // Add contact
@@ -131,7 +137,6 @@ function AddContact() {
           value={contact.class_year}
           onChange={inputChange}
           className="form-control"
-          defaultValue={"First-Year"}
         >
           <option value="First-Year">First-Year</option>
           <option value="Sophomore">Sophomore</option>
@@ -168,7 +173,6 @@ function AddContact() {
           value={contact.should_contact}
           onChange={inputChange}
           className="form-control"
-          defaultValue={"true"}
         >
           <option value="true">Yes</option>
           <option value="false">No</option>
@@ -181,7 +185,6 @@ function AddContact() {
           value={contact.contact_status}
           onChange={inputChange}
           className="form-control"
-          defaultValue={"Not Contacted"}
         >
           <option value="Contacted">Contacted</option>
           <option value="Contacted But No Response">
@@ -197,7 +200,6 @@ function AddContact() {
           value={contact.pte_status}
           onChange={inputChange}
           className="form-control"
-          defaultValue={"Not Completed"}
         >
           <option value="Full PTE Completed">Full PTE Completed</option>
           <option value="Only Short PTE Completed">
@@ -213,7 +215,6 @@ function AddContact() {
           value={contact.registration_status}
           onChange={inputChange}
           className="form-control"
-          defaultValue={"Not Registered"}
         >
           <option value="Registered">Registered</option>
           <option value="Registration In Progress">

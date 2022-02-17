@@ -37,8 +37,20 @@ app.post("/add-contact", async (req, res) => {
 // Get all contacts
 app.get("/contacts", async (req, res) => {
     try {
-        const allContacts = await pool.query("SELECT * FROM contacts");
-        res.json(allContacts.rows);
+        const { query } = req.query;
+
+        const contacts = query ?
+            await pool.query(
+                "SELECT * FROM contacts WHERE last_name || '^' || first_name || \
+            '^' || email || '^' || phone_number || '^' || house || '^' || \
+            suite || '^' || mailbox_center || '^' || mailbox_number || '^' || \
+            class_year || '^' || city || '^' || state || '^' || \
+            should_contact || '^' || contact_status || '^' || pte_status || \
+            '^' || registration_status || '^' || stage_of_voting_process ILIKE $1",
+                [`%${query}%`]
+            ) : await pool.query("SELECT * FROM contacts");
+
+        res.json(contacts.rows);
     } catch (error) {
         console.error(error.message);
     }
