@@ -1,3 +1,14 @@
 footer {
     text-align: center;
+    background-color: #C1121F;
+}
+
+box {
+    display: inline;
+    padding: 10px; 
+}
+
+.footer-link {
+    color: #FDF0D5;
+     
 }

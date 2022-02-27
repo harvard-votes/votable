@@ -5,7 +5,15 @@ function Footer() {
   return (
     <footer className="mb-3">
       <div>Developed with love</div>
-      <Link to="/about">About</Link>
+      <box>
+        <Link className="footer-link" to="/about">About</Link>
+      </box>
+      <box>
+        <Link className="footer-link" to="https://voteschallenge.harvard.edu/">Harvard Votes Challenge</Link>
+      </box>
+      <box>
+        <Link className="footer-link" to="https://iop.harvard.edu/">Harvard IOP</Link>
+      </box>
     </footer>
   );
 }
