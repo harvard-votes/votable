@@ -1,3 +1,3 @@
-# CampusContact
+# Votable
 
-### CampusContact is the only campus-first peer-to-peer relational organizing tool.
+### Votable is the only campus-first peer-to-peer relational organizing tool.

@@ -13,9 +13,19 @@ CREATE TABLE contacts(
     class_year TEXT,
     city TEXT,
     state TEXT,
-    should_contact BOOLEAN,
     contact_status TEXT,
-    pte_status TEXT,
+    ptv_status TEXT,
     registration_status TEXT,
     stage_of_voting_process TEXT
+);
+
+CREATE TABLE scripts(
+    id SERIAL PRIMARY KEY,
+    title TEXT,
+    description TEXT,
+    timeline DATE,
+    tags TEXT[],
+    body TEXT,
+    time_created TIMESTAMP WITH TIME ZONE,
+    last_modified TIMESTAMP WITH TIME ZONE
 );

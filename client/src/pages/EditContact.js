@@ -161,18 +161,6 @@ function EditContact() {
         ></input>
       </div>
       <div className="form-group m-3">
-        <label>Should Contact</label>
-        <select
-          name="should_contact"
-          value={contact.should_contact}
-          onChange={inputChange}
-          className="form-control"
-        >
-          <option value="true">Yes</option>
-          <option value="false">No</option>
-        </select>
-      </div>
-      <div className="form-group m-3">
         <label>Contact Status</label>
         <select
           name="contact_status"
@@ -181,23 +169,23 @@ function EditContact() {
           className="form-control"
         >
           <option value="Contacted">Contacted</option>
-          <option value="Contacted But No Response">
-            Contacted But No Response
+          <option value="No Response">
+            No Response
           </option>
           <option value="Not Contacted">Not Contacted</option>
         </select>
       </div>
       <div className="form-group m-3">
-        <label>PTE Status</label>
+        <label>PTV Status</label>
         <select
-          name="pte_status"
-          value={contact.pte_status}
+          name="ptv_status"
+          value={contact.ptv_status}
           onChange={inputChange}
           className="form-control"
         >
-          <option value="Full PTE Completed">Full PTE Completed</option>
-          <option value="Only Short PTE Completed">
-            Only Short PTE Completed
+          <option value="Full PTV Completed">Full PTV Completed</option>
+          <option value="Short PTV Completed">
+            Short PTV Completed
           </option>
           <option value="Not Completed">Not Completed</option>
         </select>
@@ -211,8 +199,8 @@ function EditContact() {
           className="form-control"
         >
           <option value="Registered">Registered</option>
-          <option value="Registration In Progress">
-            Registration In Progress
+          <option value="In Progress">
+            In Progress
           </option>
           <option value="Not Registered">Not Registered</option>
         </select>
@@ -226,12 +214,12 @@ function EditContact() {
           className="form-control"
         >
           <option value="Voted In Person">Voted In Person</option>
-          <option value="Submitted Mail-in/Absentee Ballot">
-            Submitted Mail-In/Absentee Ballot
+          <option value="Submitted Absentee Ballot">
+            Submitted Absentee Ballot
           </option>
           <option value="Plan To Vote In Person">Plan To Vote In Person</option>
-          <option value="Requested Mail-in/Absentee Ballot">
-            Requested Mail-In/Absentee Ballot
+          <option value="Requested Absentee Ballot">
+            Requested Absentee Ballot
           </option>
           <option value="Unknown">Unknown</option>
         </select>
