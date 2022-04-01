@@ -27,7 +27,7 @@ function Script() {
     const submit = async () => {
         try {
             const response = await fetch(
-                `http://localhost:8000/edit-contact/${contacts[contactIndex].id}`,
+                `http://localhost:8000/contacts/edit/${contacts[contactIndex].id}`,
                 {
                     method: "PUT",
                     headers: { "Content-Type": "application/json" },

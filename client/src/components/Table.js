@@ -1,7 +1,8 @@
-import React from "react";
+import { React, Fragment } from "react";
 import { useState, useEffect } from "react";
 import Contact from "./Contact";
 import TableHeader from "./TableHeader";
+import { Menu, Transition } from '@headlessui/react';
 
 function Table() {
   const [contacts, setContacts] = useState([]);
@@ -10,8 +11,13 @@ function Table() {
   //   "Mailbox Center", "Mailbox Number", "Class Year", "Home City", "Home State",
   //   "Contact Status", "PTV Status", "Registration Status", "Stage of Voting Process", "Actions"];
 
-  const fields = ["Student Information", "Contact", "Hometown", "Mailbox",
+  const fields = ["Student Information", "Contact", "Campus Location", "Hometown",
     "Status", ""];
+
+  const [statuses, setStatuses] = useState([true, false, false, false]);
+
+  const statusFields = ["contactStatus", "ptvStatus", "registrationStatus", "stageOfVotingProcess"];
+  const statusText = ["Contact Status", "PTV Status", "Registration Status", "Stage of Voting Process"];
 
   // Get all contacts
   const getContacts = async () => {
@@ -40,7 +46,14 @@ function Table() {
     }
   };
 
-  // const showDropdown = true;
+  const handleStatusOnClick = async (e) => {
+    if (e.target.name == null) return;
+    let index = statusFields.indexOf(e.target.name);
+    let copy = statuses.slice();
+    copy[index] = !copy[index];
+    if (copy.every(field => !field)) return;
+    setStatuses(copy);
+  }
 
   useEffect(() => {
     getContacts();
@@ -49,33 +62,54 @@ function Table() {
   return (
     <>
       {contacts.length > 0 ? (
-        <div className="flex flex-col m-6 overflow-x-hidden">
+        <div className="flex flex-col mx-6 mb-6 overflow-x-hidden">
           <div className="overflow-x-hidden sm:-mx-6 lg:-mx-8">
             <div className="inline-block min-w-full sm:px-6 lg:px-8">
               <div className="overflow-hidden shadow-md sm:rounded-lg">
-                <table className="min-w-full">
+                <table className="w-full table-fixed">
                   <thead className="bg-gray-100 dark:bg-gray-700">
                     <tr>
                       {fields.map((field) => field === "Status" ? (
-                        <th key={field} scope="col" className="w-64 py-3 pl-4 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                          <a role="button" id="dropdownButton" className="inline-flex items-center">Status
-                            <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
-                          </a>
-                          {/* {showDropdown ? (
-                            <ul className="dropdown-menu mt-3 py-2 min-w-max absolute bg-white text-base z-50 float-left text-left rounded-lg shadow-lg mt-1" aria-labelledby="dropdownButton">
-                              <li>
-                                <a href="#" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
-                              </li>
-                              <li>
-                                <a href="#" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
-                              </li>
-                              <li>
-                                <a href="#" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Earnings</a>
-                              </li>
-                              <li>
-                                <a href="#" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
-                              </li>
-                            </ul>) : <></>} */}
+                        <th key={field} scope="col">
+                          <Menu as="div" className="relative inline-block text-left">
+                            <div className="ml-4 w-64">
+                              <Menu.Button className="inline-flex items-center py-3 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                                Status
+                                <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                              </Menu.Button>
+                            </div>
+
+                            <Transition
+                              as={Fragment}
+                              enter="transition ease-out duration-100"
+                              enterFrom="transform opacity-0 scale-95"
+                              enterTo="transform opacity-100 scale-100"
+                              leave="transition ease-in duration-75"
+                              leaveFrom="transform opacity-100 scale-100"
+                              leaveTo="transform opacity-0 scale-95"
+                            >
+                              <Menu.Items className="origin-top-left absolute left-4 w-60 mt-0.5 rounded-md shadow-lg bg-white ring-1 ring-white focus:outline-none">
+                                <div className="py-1">
+                                  {statusFields.map((field, index) =>
+                                    <Menu.Item key={index}>
+                                      <>
+                                        <button
+                                          role="button"
+                                          className="block px-4 py-2 text-gray-700 text-sm font-normal w-full inline-flex items-center"
+                                          onClick={handleStatusOnClick}
+                                          name={field}
+                                        >
+                                          {statusText[index]}
+                                          {statuses[index] ? <svg className="w-6 h-6 absolute right-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 13l4 4L19 7" /></svg> : <></>}
+                                        </button>
+                                        {index === statusFields.length - 1 ? <></> : <br />}
+                                      </>
+                                    </Menu.Item>
+                                  )}
+                                </div>
+                              </Menu.Items>
+                            </Transition>
+                          </Menu>
                         </th>
                       ) : (
                         <TableHeader key={field} content={field} />
@@ -84,7 +118,7 @@ function Table() {
                   </thead>
                   <tbody>
                     {contacts.map((contact) => (
-                      <Contact key={contact.id} contact={contact} onDelete={deleteContact} />
+                      <Contact key={contact.id} contact={contact} statuses={statuses} onDelete={deleteContact} />
                     ))}
                   </tbody>
                 </table>

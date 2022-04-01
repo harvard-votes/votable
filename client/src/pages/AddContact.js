@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function AddContact() {
   const navigate = useNavigate();
@@ -21,12 +21,25 @@ function AddContact() {
     });
   };
 
+  // Form validation
+  const validate = () => {
+    let required = [contact.last_name, contact.first_name, contact.email, contact.phone_number,
+    contact.house, contact.suite, contact.mailbox_center, contact.mailbox_number,
+    contact.city, contact.state, contact.class_year, contact.contact_status, contact.ptv_status,
+    contact.registration_status, contact.stage_of_voting_process];
+    for (const i of required) {
+      if (i == null || i.length < 1) return false;
+    }
+    return true;
+  };
+
   // Add contact
   const onSubmit = async (e) => {
     e.preventDefault();
+    if (!validate()) return;
     try {
       const response = await fetch(
-        "http://localhost:8000/add-contact/",
+        "http://localhost:8000/contacts/add/",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -40,197 +53,93 @@ function AddContact() {
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <div className="form-group m-3">
-        <label>Last Name</label>
-        <input
-          type="text"
-          placeholder="Last Name"
-          name="last_name"
-          value={contact.last_name || ""}
-          onChange={inputChange}
-          className="form-control"
-        ></input>
+    <form>
+      <div className="m-6 mb-0 bg-white rounded-lg border dark:border-gray-700 dark:bg-gray-800">
+        <h5 className="m-3 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Add Contact</h5>
       </div>
-      <div className="form-group m-3">
-        <label>First Name</label>
-        <input
-          type="text"
-          placeholder="First Name"
-          name="first_name"
-          value={contact.first_name || ""}
-          onChange={inputChange}
-          className="form-control"
-        ></input>
-      </div>
-      <div className="form-group m-3">
-        <label>Email</label>
-        <input
-          type="email"
-          placeholder="Email"
-          name="email"
-          value={contact.email || ""}
-          onChange={inputChange}
-          className="form-control"
-        ></input>
-      </div>
-      <div className="form-group m-3">
-        <label>Phone Number</label>
-        <input
-          type="tel"
-          placeholder="Phone Number"
-          name="phone_number"
-          value={contact.phone_number || ""}
-          onChange={inputChange}
-          className="form-control"
-        ></input>
-      </div>
-      <div className="form-group m-3">
-        <label>House/Yard</label>
-        <input
-          type="text"
-          placeholder="House/Yard"
-          name="house"
-          value={contact.house || ""}
-          onChange={inputChange}
-          className="form-control"
-        ></input>
-      </div>
-      <div className="form-group m-3">
-        <label>Suite</label>
-        <input
-          type="text"
-          placeholder="Suite"
-          name="suite"
-          value={contact.suite || ""}
-          onChange={inputChange}
-          className="form-control"
-        ></input>
-      </div>
-      <div className="form-group m-3">
-        <label>Mailbox Center</label>
-        <input
-          type="text"
-          placeholder="Mailbox Center"
-          name="mailbox_center"
-          value={contact.mailbox_center || ""}
-          onChange={inputChange}
-          className="form-control"
-        ></input>
-      </div>
-      <div className="form-group m-3">
-        <label>Mailbox Number</label>
-        <input
-          type="text"
-          placeholder="Mailbox Number"
-          name="mailbox_number"
-          value={contact.mailbox_number || ""}
-          onChange={inputChange}
-          className="form-control"
-        ></input>
-      </div>
-      <div className="form-group m-3">
-        <label>Class Year</label>
-        <select
-          name="class_year"
-          value={contact.class_year}
-          onChange={inputChange}
-          className="form-control"
-        >
-          <option value="First-Year">First-Year</option>
-          <option value="Sophomore">Sophomore</option>
-          <option value="Junior">Junior</option>
-          <option value="Senior">Senior</option>
+      <div className="p-6">
+        <div className="mb-4">
+          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Last Name</label>
+          <input type="text" name="last_name" value={contact.last_name || ""} onChange={inputChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+        </div>
+        <div className="mb-4">
+          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">First Name</label>
+          <input type="text" name="first_name" value={contact.first_name || ""} onChange={inputChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+        </div>
+        <div className="mb-4">
+          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Email</label>
+          <input type="email" name="email" value={contact.email || ""} onChange={inputChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+        </div>
+        <div className="mb-4">
+          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Phone Number</label>
+          <input type="tel" name="phone_number" value={contact.phone_number || ""} onChange={inputChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+        </div>
+        <div className="mb-4">
+          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">House/Yard</label>
+          <input type="text" name="house" value={contact.house || ""} onChange={inputChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+        </div>
+        <div className="mb-4">
+          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Suite</label>
+          <input type="text" name="suite" value={contact.suite || ""} onChange={inputChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+        </div>
+        <div className="mb-4">
+          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Mailbox Center</label>
+          <input type="text" name="mailbox_center" value={contact.mailbox_center || ""} onChange={inputChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+        </div>
+        <div className="mb-4">
+          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Mailbox Number</label>
+          <input type="text" name="mailbox_number" value={contact.mailbox_number || ""} onChange={inputChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+        </div>
+        <div className="mb-4">
+          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Home City</label>
+          <input type="text" name="city" value={contact.city || ""} onChange={inputChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+        </div>
+        <div className="mb-4">
+          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Home State</label>
+          <input type="text" name="state" value={contact.state || ""} onChange={inputChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+        </div>
+
+        <label htmlFor="classYear" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Class Year</label>
+        <select name="class_year" id="classYear" onChange={inputChange} value={contact.class_year} className="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+          <option>First-Year</option>
+          <option>Sophomore</option>
+          <option>Junior</option>
+          <option>Senior</option>
         </select>
-      </div>
-      <div className="form-group m-3">
-        <label>Home City</label>
-        <input
-          type="text"
-          placeholder="Home City"
-          name="city"
-          value={contact.city || ""}
-          onChange={inputChange}
-          className="form-control"
-        ></input>
-      </div>
-      <div className="form-group m-3">
-        <label>Home State</label>
-        <input
-          type="text"
-          placeholder="Home State"
-          name="state"
-          value={contact.state || ""}
-          onChange={inputChange}
-          className="form-control"
-        ></input>
-      </div>
-      <div className="form-group m-3">
-        <label>Contact Status</label>
-        <select
-          name="contact_status"
-          value={contact.contact_status}
-          onChange={inputChange}
-          className="form-control"
-        >
-          <option value="Contacted">Contacted</option>
-          <option value="No Response">
-            No Response
-          </option>
-          <option value="Not Contacted">Not Contacted</option>
+        <label htmlFor="contactStatus" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Contact Status</label>
+        <select name="contact_status" id="contactStatus" onChange={inputChange} value={contact.contact_status} className="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+          <option>Contacted</option>
+          <option>No Response</option>
+          <option>Not Contacted</option>
         </select>
-      </div>
-      <div className="form-group m-3">
-        <label>PTV Status</label>
-        <select
-          name="ptv_status"
-          value={contact.ptv_status}
-          onChange={inputChange}
-          className="form-control"
-        >
-          <option value="Full PTV Completed">Full PTV Completed</option>
-          <option value="Short PTV Completed">
-            Short PTV Completed
-          </option>
-          <option value="Not Completed">Not Completed</option>
+        <label htmlFor="ptvStatus" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">PTV Status</label>
+        <select name="ptv_status" id="ptvStatus" onChange={inputChange} value={contact.ptv_status} className="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+          <option>Full PTV Completed</option>
+          <option>Short PTV Completed</option>
+          <option>Not Completed</option>
         </select>
-      </div>
-      <div className="form-group m-3">
-        <label>Registration Status</label>
-        <select
-          name="registration_status"
-          value={contact.registration_status}
-          onChange={inputChange}
-          className="form-control"
-        >
-          <option value="Registered">Registered</option>
-          <option value="In Progress">
-            In Progress
-          </option>
-          <option value="Not Registered">Not Registered</option>
+        <label htmlFor="registrationStatus" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Registration Status</label>
+        <select name="registration_status" id="registrationStatus" onChange={inputChange} value={contact.registration_status} className="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+          <option>Registered</option>
+          <option>In Progress</option>
+          <option>Not Registered</option>
         </select>
-      </div>
-      <div className="form-group m-3">
-        <label>Stage of Voting Process</label>
-        <select
-          name="stage_of_voting_process"
-          value={contact.stage_of_voting_process}
-          onChange={inputChange}
-          className="form-control"
-        >
-          <option value="Voted In Person">Voted In Person</option>
-          <option value="Submitted Absentee Ballot">
-            Submitted Absentee Ballot
-          </option>
-          <option value="Plan To Vote In Person">Plan To Vote In Person</option>
-          <option value="Requested Absentee Ballot">
-            Requested Absentee Ballot
-          </option>
-          <option value="Unknown">Unknown</option>
+        <label htmlFor="stageOfVotingProcess" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Stage of Voting Process</label>
+        <select name="stage_of_voting_process" id="stageOfVotingProcess" onChange={inputChange} value={contact.stage_of_voting_process} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+          <option>Voted In Person</option>
+          <option>Submitted Absentee Ballot</option>
+          <option>Plan To Vote In Person</option>
+          <option>Requested Absentee Ballot</option>
+          <option>Unknown</option>
         </select>
       </div>
 
-      <input type="submit" value="Save" className="ml-3 btn btn-outline-primary" />
+      <div className="pl-6 pb-6">
+        <button type="button" onClick={onSubmit} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add Contact</button>
+        <Link to="/contacts">
+          <button type="reset" className="absolute right-6 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Discard</button>
+        </Link>
+      </div>
     </form>
   );
 }

@@ -12,7 +12,7 @@ app.use(express.json());
 // ROUTES //
 
 // Add contact
-app.post("/add-contact", async (req, res) => {
+app.post("/contacts/add", async (req, res) => {
     try {
         const { last_name, first_name, email, phone_number, house, suite, mailbox_center,
             mailbox_number, class_year, city, state, contact_status,
@@ -70,7 +70,7 @@ app.get("/contacts/:id", async (req, res) => {
 });
 
 // Update contact
-app.put("/edit-contact/:id", async (req, res) => {
+app.put("/contacts/edit/:id", async (req, res) => {
     try {
         const { id } = req.params;
         const { last_name, first_name, email, phone_number, house, suite, mailbox_center,
@@ -157,6 +157,17 @@ app.put("/scripts/edit/:id", async (req, res) => {
         );
 
         res.json(updateScript.rows[0]);
+    } catch (error) {
+        console.error(error.message);
+    }
+});
+
+// Delete script
+app.delete("/scripts/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const deleteScript = await pool.query("DELETE FROM scripts WHERE id = $1", [id]);
+        res.json("Script deleted!");
     } catch (error) {
         console.error(error.message);
     }
