@@ -127,7 +127,8 @@ function Table() {
           </div>
         </div>
       ) : (
-        <h4 className="m-3">No Contacts</h4>
+        <></>
+        // <h1 className="mx-6 text-xl font-semibold text-gray-500 dark:text-gray-400">No Contacts</h1>
       )
       }
     </>

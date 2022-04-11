@@ -3,7 +3,7 @@ import { useLayoutEffect } from "react";
 function Landing() {
 
     useLayoutEffect(() => {
-        window.scrollTo(0, 0);
+        // window.scrollTo(0, 0);
     });
 
     return (
@@ -137,7 +137,7 @@ function Landing() {
                                     </p>
                                     <div className="mt-8">
                                         <div className="flex items-center">
-                                            <h4 className="flex-shrink-0 pr-4 bg-white text-sm leading-5 tracking-wider font-semibold uppercase text-indigo-600">
+                                            <h4 className="flex-shrink-0 pr-4 bg-white text-sm leading-5 tracking-wider font-semibold uppercase text-sky-600">
                                                 What's Included
                                             </h4>
                                             <div className="flex-1 border-t-2 border-gray-200" />
@@ -145,7 +145,7 @@ function Landing() {
                                         <ul className="mt-8 lg:grid lg:grid-cols-2 lg:col-gap-8 lg:row-gap-5">
                                             <li className="flex items-start lg:col-span-1">
                                                 <div className="flex-shrink-0">
-                                                    <svg className="h-5 w-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                                                    <svg className="h-5 w-5 text-green-700" fill="currentColor" viewBox="0 0 20 20">
                                                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                                                     </svg>
                                                 </div>
@@ -155,7 +155,7 @@ function Landing() {
                                             </li>
                                             <li className="mt-5 flex items-start lg:col-span-1 lg:mt-0">
                                                 <div className="flex-shrink-0">
-                                                    <svg className="h-5 w-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                                                    <svg className="h-5 w-5 text-green-700" fill="currentColor" viewBox="0 0 20 20">
                                                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                                                     </svg>
                                                 </div>
@@ -165,7 +165,7 @@ function Landing() {
                                             </li>
                                             <li className="mt-5 flex items-start lg:col-span-1 lg:mt-0">
                                                 <div className="flex-shrink-0">
-                                                    <svg className="h-5 w-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                                                    <svg className="h-5 w-5 text-green-700" fill="currentColor" viewBox="0 0 20 20">
                                                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                                                     </svg>
                                                 </div>
@@ -175,7 +175,7 @@ function Landing() {
                                             </li>
                                             <li className="mt-5 flex items-start lg:col-span-1 lg:mt-0">
                                                 <div className="flex-shrink-0">
-                                                    <svg className="h-5 w-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                                                    <svg className="h-5 w-5 text-green-700" fill="currentColor" viewBox="0 0 20 20">
                                                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                                                     </svg>
                                                 </div>

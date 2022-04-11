@@ -10,9 +10,6 @@ function Signup({ setAuthState }) {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(email);
-    console.log(password);
-
     setAuthState(true);
     navigate("/dashboard");
   };
@@ -21,12 +18,10 @@ function Signup({ setAuthState }) {
     <div className="bg-gray-100 rounded py-2">
       <div className="flex justify-center px-6 my-12">
         <div className="w-full xl:w-3/4 lg:w-11/12 flex">
-          <div className="w-full h-auto bg-gray-400 hidden lg:block lg:w-1/2 bg-cover rounded-l-lg" style={{ backgroundImage: 'url("https://projects.iq.harvard.edu/files/styles/os_files_xxlarge/public/testcivicengagement/files/rsz_1mju40d2a.jpg?m=1580409680&itok=6jc_yqUj")' }} />
+          <div className="w-full h-auto bg-gray-400 hidden lg:block lg:w-1/2 bg-cover rounded-l-lg" style={{ backgroundPosition: 'center', backgroundImage: 'url("https://projects.iq.harvard.edu/files/styles/os_files_xxlarge/public/testcivicengagement/files/orientation2019_harvardvotes_nm-24_02.jpg?m=1579808379&itok=6gYqbcga")' }} />
           <div className="w-full lg:w-1/2 bg-white p-5 rounded-lg lg:rounded-l-none">
 
-            <div className="px-8 mb-4 text-center">
-              <h3 className="pt-4 mb-2 text-2xl font-semibold">Create an Account</h3>
-            </div>
+            <h3 className="px-6 pt-4 text-2xl font-semibold">Create an account</h3>
 
             <div className="p-6">
               <form>

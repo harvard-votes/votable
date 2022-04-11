@@ -1,49 +1,40 @@
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 
 function ForgotPassword() {
-  const handleFormSubmit = () => {
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState("");
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+
+    navigate("/login");
   };
+
   return (
-    <div className="container mx-auto bg-gray-100 rounded py-2">
-      <div className="container mx-auto">
-        <div className="flex justify-center px-6 my-12">
-          <div className="w-full xl:w-3/4 lg:w-11/12 flex">
-            <div className="w-full h-auto bg-gray-400 hidden lg:block lg:w-1/2 bg-cover rounded-l-lg" style={{ backgroundImage: 'url("https://projects.iq.harvard.edu/files/styles/os_files_xxlarge/public/testcivicengagement/files/rsz_1mju40d2a.jpg?m=1580409680&itok=6jc_yqUj")' }} />
-            <div className="w-full lg:w-1/2 bg-white p-5 rounded-lg lg:rounded-l-none">
-              <div className="px-8 mb-4 text-center">
-                <h3 className="pt-4 mb-2 text-2xl">Forgot Your Password?</h3>
-                {/* <p className="mb-4 text-sm text-gray-700">
-                      Just enter your email address below and we'll send you a link to reset your password!
-                    </p> */}
-              </div>
-              <form className="px-8 pt-6 pb-8 mb-4 bg-white rounded" onSubmit={handleFormSubmit}>
-                <div className="mb-4">
-                  <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="email">
-                    Email
-                  </label>
-                  <input className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Enter Email Address..." />
+    <div className="bg-gray-100 rounded py-2">
+      <div className="flex justify-center px-6 my-12">
+        <div className="w-full xl:w-3/4 lg:w-11/12 flex">
+          <div className="w-full h-auto bg-gray-400 hidden lg:block lg:w-1/2 bg-cover rounded-l-lg" style={{ backgroundImage: 'url("https://projects.iq.harvard.edu/files/styles/os_files_xxlarge/public/testcivicengagement/files/about.jpg?m=1580952160&itok=gIWeSzE_")' }} />
+          <div className="w-full lg:w-1/2 bg-white p-5 rounded-lg lg:rounded-l-none">
+
+            <h3 className="px-6 pt-4 text-2xl font-semibold">Reset your password</h3>
+            <p className="px-6 text-left mt-4 text-sm text-gray-500 dark:text-gray-400">
+              Or <Link to="/signup" className="text-green-700 font-semibold">sign up here!</Link>
+            </p>
+
+            <div className="p-6">
+              <form>
+                <div className="mb-6">
+                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Email</label>
+                  <input type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
                 </div>
-                <div className="mb-6 text-center">
-                  <button className="w-full px-4 py-2 font-bold text-white bg-red-700 rounded-full hover:bg-red-900 focus:outline-none focus:shadow-outline" type="button">
-                    Reset Password
-                  </button>
-                </div>
-                <hr className="mb-6 border-t" />
-                <div className="text-center">
-                  <a className="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800" href="./register">
-                    Create an Account!
-                  </a>
-                </div>
-                <div className="text-center">
-                  <a className="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800" href="./login">
-                    Already have an account? Login!
-                  </a>
-                </div>
-                <div className="flex justify-center">
-                  <div className="w-6/12 sm:w-4/12 px-4 pt-10">
-                    <img src="https://pbs.twimg.com/profile_images/1036629655422296065/ZyFeCMZd_400x400.jpg" alt="..." className="rounded max-w-full h-auto align-middle border-none" />
-                  </div>
-                </div>
+                <button type="submit" onClick={onSubmit} className="w-full focus:outline-none text-white bg-green-700 hover:bg-green-800 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700">Send reset email</button>
               </form>
+              <p className="text-left mt-4 text-sm text-gray-500 dark:text-gray-400">
+                <Link to="/login" className="text-green-700 font-semibold">Back to login</Link>
+              </p>
             </div>
           </div>
         </div>

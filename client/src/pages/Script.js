@@ -144,12 +144,12 @@ function Script() {
                 </select>
             </div>
 
-            <div className="inline-flex mb-6 items-center">
-                <button type="button" onClick={prev} className="relative left-0 text-blue-700 inline-flex items-center hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm pl-1.5 pr-3.5 py-2.5 text-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800">
+            <div className="inline-flex items-center">
+                <button type="button" onClick={prev} className="relative left-0 text-green-700 inline-flex items-center hover:text-white border border-green-700 hover:bg-green-800 font-medium rounded-lg text-sm pl-1.5 pr-3.5 py-2.5 text-center dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600">
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>Previous
                 </button>
                 <p className="w-48 absolute left-64 right-0 mx-auto text-center">{contactIndex + 1} of {contacts.length}</p>
-                <button type="button" onClick={next} className="absolute right-6 text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm pl-4 pr-2.5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Next
+                <button type="button" onClick={next} className="absolute right-6 text-white inline-flex items-center bg-green-700 hover:bg-green-800 font-medium rounded-lg text-sm pl-4 pr-2.5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700">Next
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
                 </button>
             </div>

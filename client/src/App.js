@@ -34,7 +34,7 @@ function App() {
       <Route path="/contact" element={<Contact />} />
       <Route path="/terms-of-service" element={<TermsOfService />} />
       <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-      <Route path="/login" element={<Login />} />
+      <Route path="/login" element={<Login setAuthState={setAuthed} />} />
       <Route path="/signup" element={<Signup setAuthState={setAuthed} />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/dashboard" exact element={<Dashboard />} />
@@ -51,7 +51,7 @@ function App() {
   return (
     <Router>
       {authed ?
-        <SidebarContainer>{routes}</SidebarContainer>
+        <SidebarContainer setAuthState={setAuthed}>{routes}</SidebarContainer>
         :
         <>
           <Navbar />{routes}
