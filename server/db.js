@@ -5,7 +5,8 @@ const pool = new Pool({
     password: "",
     host: "localhost",
     port: 5432,
-    database: "contacts"
+    database: "postgres"
+    // connectionString: "postgres://bzmwhixr:RnyTrl9uL4hGFfIRvxuoFJ9_6bhskFGk@ruby.db.elephantsql.com/bzmwhixr"
 });
 
 module.exports = pool;

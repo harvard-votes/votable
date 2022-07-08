@@ -29,3 +29,29 @@ CREATE TABLE scripts(
     time_created TIMESTAMP WITH TIME ZONE,
     last_modified TIMESTAMP WITH TIME ZONE
 );
+
+
+
+
+
+CREATE TABLE team(
+    id SERIAL PRIMARY KEY,
+    first_name TEXT,
+    last_name TEXT,
+    email TEXT,
+    phone_number TEXT,
+    hy TEXT,
+    state TEXT,
+    role TEXT,
+    start_date TEXT,
+    end_date TEXT,
+    organizing_lead TEXT,
+    notes TEXT,
+    house TEXT,
+    year TEXT
+);
+
+
+
+
+

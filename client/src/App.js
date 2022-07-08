@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AddContact from "./pages/AddContact";
+import AddTeam from "./pages/AddTeam";
 import EditContact from "./pages/EditContact";
 import Scripts from "./pages/Scripts";
 import Script from "./pages/Script";
@@ -12,6 +13,7 @@ import Footer from "./components/Footer";
 import About from "./pages/About";
 import SidebarContainer from "./pages/SidebarContainer";
 import TurfSheet from "./pages/TurfSheet";
+import Team from "./pages/Team";
 import Landing from "./pages/Landing";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
@@ -39,6 +41,8 @@ function App() {
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/dashboard" exact element={<Dashboard />} />
       <Route path="/contacts" exact element={<TurfSheet />} />
+      <Route path="/team" exact element={<Team />} />
+      <Route path="/team/add" element={<AddTeam />} />
       <Route path="/contacts/add" element={<AddContact />} />
       <Route path="/contacts/edit" element={<EditContact />} />
       <Route path="/scripts" element={<Scripts />} />
