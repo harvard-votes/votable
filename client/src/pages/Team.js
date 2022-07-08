@@ -1,7 +1,7 @@
 import { React, Fragment } from "react";
 import { useState } from "react";
 import SearchBar from "../components/SearchBar";
-import Table from "../components/Table";
+import Table from "../components/TeamTable";
 import { Link } from "react-router-dom";
 import { Menu, Transition } from "@headlessui/react";
 
@@ -138,12 +138,12 @@ function TurfSheet() {
           </Transition>
         </Menu>
 
-        <Link to="/contacts/add" className="absolute right-6">
+        <Link to="/team/add" className="absolute right-6">
           <button
             type="button"
             className="focus:outline-none text-white bg-green-700 hover:bg-green-800 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700"
           >
-            Add Contact
+            Add Team Member
           </button>
         </Link>
       </div>

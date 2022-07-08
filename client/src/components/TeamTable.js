@@ -1,6 +1,6 @@
 import { React, Fragment } from "react";
 import { useState, useEffect } from "react";
-import Contact from "./Contact";
+import Contact from "./Team";
 import TableHeader from "./TableHeader";
 import { Menu, Transition } from '@headlessui/react';
 
@@ -12,8 +12,7 @@ function Table() {
   //   "Mailbox Center", "Mailbox Number", "Class Year", "Home City", "Home State",
   //   "Contact Status", "PTV Status", "Registration Status", "Stage of Voting Process", "Actions"];
 
-  const fields = ["Select", "Student Information", "Contact", "Campus Location", "Hometown",
-    "Status", ""];
+  const fields = ["Select", "Name", "Student Information", "Year", "Organizing Lead", "Notes", ""];
 
   const [statuses, setStatuses] = useState([true, false, false, false]);
 
@@ -23,7 +22,7 @@ function Table() {
   // Get all contacts
   const getContacts = async () => {
     try {
-      const response = await fetch("http://localhost:8000/contacts");
+      const response = await fetch("http://localhost:8000/team");
       const jsonData = await response.json();
 
       setContacts(jsonData);
@@ -36,7 +35,7 @@ function Table() {
   const deleteContact = async (id) => {
     if (window.confirm("Are you sure you want to delete this contact?")) {
       try {
-        const response = await fetch(`http://localhost:8000/contacts/${id}`, {
+        const response = await fetch(`http://localhost:8000/team/${id}`, {
           method: "DELETE"
         });
 
